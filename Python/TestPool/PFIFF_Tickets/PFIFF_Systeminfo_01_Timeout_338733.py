@@ -1,6 +1,6 @@
 # ******************************************************************************
 # -*- coding: latin1 -*-
-# File    : PFIFF_Systeminfo_Timeout_33873.py
+# File    : PFIFF_Systeminfo_01_Timeout_338733.py
 # Title   : PFIFF_Systeminfo_Timeout_33873
 # Task    : PFIFF_Systeminfo_Timeout_33873
 #
@@ -116,7 +116,7 @@ try:
     testresult.append(["[#0] Starte Testprozess: {}".format(testenv.script_name.split('.py')[0]), ""])
 
     # test step 1 and 2
-    testresult.append(["[.] Schalte Kl30, setze SiShift_01 zyklus zeit auf 0.", ""])
+    testresult.append(["[.] Schalte Kl30, setze Systeminfo_01 zykluzeit auf 0.", ""])
     testresult.append(["[.] Schaltle Kl15 ein und RBS an und warte bis erste NM Botschaft empfäng", ""])
     hil.cl15_on__.set(1)
     #func_nm.hil_ecu_e2e(allstate=1, sisft=0, otamc=1, oruA=1, ourD=1)
@@ -138,10 +138,6 @@ try:
     result = func_nm.is_bus_started()
     testresult.append(result)
 
-    # hil.Systeminfo_01__period.set(20)
-    # time.sleep(0.010)
-    # hil.Systeminfo_01__period.setState("an")
-
     # test step 2.1
     testresult.append(["[+]  warte 500ms ", ""])
     time.sleep(0.500)
@@ -149,20 +145,20 @@ try:
     testresult.append(["[.] Lese Fehlerspeicher ", ""])
     testresult.append(canape_diag.checkEventMemoryEmpty())
 
-    testresult.append(["[+]  warte 4500ms ", ""])
+    testresult.append(["[.]  warte 4500ms ", ""])
     time.sleep(4.5)
     testresult.append(["[.] Lese Fehlerspeicher ", ""])
     testresult.append(canape_diag.checkEventMemoryEmpty())
 
-    testresult.append(["[+]  warte 500ms ", ""])
+    testresult.append(["[.]  warte 500ms ", ""])
     time.sleep(.5)
     testresult.append(["[.] Lese Fehlerspeicher (0xE00106 DTC aktiv)", ""])
     testresult.append(canape_diag.checkEventMemory(aktiv_dtc))
-
+    testresult.append(["[-0]", ""])
 
     # TEST POST CONDITIONS ####################################################
-    testresult.append(["[-] Test Nachbedingungen", ""])
-    testresult.append(["[-] ECU ausschalten", ""])
+    testresult.append(["[.] Test Nachbedingungen", ""])
+    testresult.append(["[+] ECU ausschalten", ""])
     testenv.shutdownECU()
 
 finally:
