@@ -14,6 +14,7 @@
 # Rev. | Date       | Name       | Description
 # ------------------------------------------------------------------------------
 # 1.0  | 22.09.2022 | Mohammed   | initial
+# 1.1  | 29.09.2022 | Mohammed   | Rework
 
 from _automation_wrapper_ import TestEnv
 from functions_diag import HexList
