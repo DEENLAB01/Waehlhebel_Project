@@ -14,9 +14,9 @@
 # Rev. | Date       | Name     | Description
 #------------------------------------------------------------------------------
 # 1.0  | 09.07.2021 | An3Neumann | initial
-# 1.1  | 09.07.2021 | Mohammed | Botschaft korrigiert: bz_signal nach crc_signal
-# 1.2  | 09.07.2021 | Mohammed | Rework
-
+# 1.1  | 09.07.2021 | Mohammed   | Botschaft korrigiert: bz_signal nach crc_signal
+# 1.2  | 09.07.2021 | Mohammed   | Rework
+# 1.3  | 29.09.2022 | Mohammed   | Added GitHUB
 
 #******************************************************************************
 import time
