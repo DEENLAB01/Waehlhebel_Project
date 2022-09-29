@@ -1,6 +1,6 @@
 # ******************************************************************************
 # -*- coding: latin1 -*-
-# File    : PFIFF_VDOS_Timeout_338733.py
+# File    : PFIFF_VDOSO_05_Timeout_338733.py
 # Title   : PFIFF_VDOS_Timeout_338733
 # Task    : Erstmalige PFIFF_VDOS_Timeout_338733
 #
@@ -14,6 +14,7 @@
 # Rev. | Date       | Name       | Description
 # ------------------------------------------------------------------------------
 # 1.0  | 22.07.2022 | Mohammed   | initial
+# 1.1  | 29.09.2022 | Mohammed   | Rework
 
 from _automation_wrapper_ import TestEnv
 from functions_diag import HexList
@@ -116,7 +117,7 @@ try:
     testresult.append(["[#0] Starte Testprozess: {}".format(testenv.script_name.split('.py')[0]), ""])
 
     # test step 1 and 2
-    testresult.append(["[.] Schalte Kl30, setze SiShift_01 zyklus zeit auf 0.", ""])
+    testresult.append(["[.] Schalte Kl30, setze VDSO_05 zykluzeit auf 0.", ""])
     testresult.append(["[.] Schaltle Kl15 ein und RBS an und warte bis erste NM Botschaft empfäng", ""])
     hil.cl15_on__.set(1)
     #func_nm.hil_ecu_e2e(allstate=1, sisft=0, otamc=1, oruA=1, ourD=1)
@@ -149,7 +150,7 @@ try:
     testresult.append(["[.] Lese Fehlerspeicher ", ""])
     testresult.append(canape_diag.checkEventMemoryEmpty())
 
-    testresult.append(["[+]  warte 500ms ", ""])
+    testresult.append(["[.]  warte 500ms ", ""])
     time.sleep(.5)
     testresult.append(["[.] Lese Fehlerspeicher (0xE00104 DTC aktiv)", ""])
     testresult.append(canape_diag.checkEventMemory([(0xE00104, 0x27)]))
