@@ -1,7 +1,7 @@
 # ******************************************************************************
 # -*- coding: latin1 -*-
-# File    : N_HaltPhase_kein_bus_knockout.py
-# Title   : N_HaltPhase_kein_bus_knockout
+# File    : N_Haltphase_kein_bus_knockout.py
+# Title   : N_Haltphase_kein_bus_knockout
 # Task    : Während N-Haltphase kein bus knockout
 #
 # Author  : Devangbhai Patel
@@ -55,7 +55,7 @@ try:
     test_variable.alias = "Waehlhebel_04:WH_Zustand_N_Haltephase_2"
 
     # set Testcase ID #########################################################
-    testresult.setTestcaseId("TestSpec_XXX")
+    testresult.setTestcaseId("TestSpec_422")
 
     # TEST PRE CONDITIONS #####################################################
     testresult.append(["[#0] Test Vorbedingungen", ""])
@@ -134,26 +134,26 @@ try:
             descr="Prüfe, dass Wert 1 (aktiv_Timer_laeuft) ist",
         )
     )
+    # # test step 9
+    # testresult.append(["[.] Wechsel in die Entwicklersession, (in Factory mode security access dürchführen) Setze mittels 2E 09 F3: KnockOut_Test_mode  auf 0x4 * (Supress Veto == Active), um BUSKnockOut testen zu können und warte 2sec", ""])
+    # testresult.extend(canape_diag.changeAndCheckDiagSession('factory_mode'))
+    # testresult.append(["\xa0 Erfolgreichen Security Access durchführen", "INFO"])
+    # seed_1, key_1, result = canape_diag.performSecurityAccess()
+    # testresult.extend(result)
+    #
+    # request = [0x2E] + diag_ident_KN_TEST_MODE['identifier'] + [0x04]
+    # [response, result] = canape_diag.sendDiagRequest(request)
+    # testresult.append(result)
+    #
+    # testresult.append(["\xa0 Prüfe Positive Response: 0x6E 09F3 ist", "INFO"])
+    # testresult.append(canape_diag.checkPositiveResponse(response, request))
+    # time.sleep(2)
+
     # test step 9
-    testresult.append(["[.] Wechsel in die Entwicklersession, (in Factory mode security access dürchführen) Setze mittels 2E 09 F3: KnockOut_Test_mode  auf 0x4 * (Supress Veto == Active), um BUSKnockOut testen zu können und warte 2sec", ""])
-    testresult.extend(canape_diag.changeAndCheckDiagSession('factory_mode'))
-    testresult.append(["\xa0 Erfolgreichen Security Access durchführen", "INFO"])
-    seed_1, key_1, result = canape_diag.performSecurityAccess()
-    testresult.extend(result)
-
-    request = [0x2E] + diag_ident_KN_TEST_MODE['identifier'] + [0x04]
-    [response, result] = canape_diag.sendDiagRequest(request)
-    testresult.append(result)
-
-    testresult.append(["\xa0 Prüfe Positive Response: 0x6E 09F3 ist", "INFO"])
-    testresult.append(canape_diag.checkPositiveResponse(response, request))
-    time.sleep(2)
-
-    # test step 10
     testresult.append(["[.] Warte weitere 3 min", ""])
     time.sleep(60*3)
 
-    # test step 11
+    # test step 10
     testresult.append(["[.] Prüfe dass KN_Waehlhebel_BusKnockOutTimer und  KN_Waehlhebel_BusKnockOutTimer wert sind mit dem gespeicherten Ausgangswert identisch sind.", ""])
     testresult += [
         basic_tests.checkStatus(hil.KN_Waehlhebel__KN_Waehlhebel_ECUKnockOutTimer__value, start_value_ECU_KN_timer,
@@ -162,7 +162,7 @@ try:
         basic_tests.checkStatus(hil.KN_Waehlhebel__KN_Waehlhebel_BusKnockOutTimer__value, start_value_Bus_KN_timer,
                                 descr=" Prüfe dass KN_Waehlhebel_BusKnockOutTimer == %s" % (start_value_Bus_KN_timer))]
 
-    # test step 12
+    # test step 11
     testresult.append(["[.] Prüfe WH_Zustand_N_Haltephase_2 = 1 ", ""])
     testresult.append(
         basic_tests.checkStatus(
@@ -172,12 +172,12 @@ try:
         )
     )
 
-    # Ttest step 13"
-    testresult.append(["[.] Setze SiShift_StLghtDrvPosn = 8 senden, und 300ms warten", ""])
+    # Ttest step 12
+    testresult.append(["[.] Setze SiShift_StLghtDrvPosn = 8 und 300ms warten", ""])
     descr, verdict = func_gs.changeDrivePosition('P')
     time.sleep(0.300)
 
-    # test step 14
+    # test step 13
     testresult.append(["[.] Prüfe WH_Zustand_N_Haltephase_2 = 0 ", ""])
     testresult.append(
         basic_tests.checkStatus(
