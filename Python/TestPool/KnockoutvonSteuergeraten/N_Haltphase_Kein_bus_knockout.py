@@ -134,20 +134,6 @@ try:
             descr="Prüfe, dass Wert 1 (aktiv_Timer_laeuft) ist",
         )
     )
-    # # test step 9
-    # testresult.append(["[.] Wechsel in die Entwicklersession, (in Factory mode security access dürchführen) Setze mittels 2E 09 F3: KnockOut_Test_mode  auf 0x4 * (Supress Veto == Active), um BUSKnockOut testen zu können und warte 2sec", ""])
-    # testresult.extend(canape_diag.changeAndCheckDiagSession('factory_mode'))
-    # testresult.append(["\xa0 Erfolgreichen Security Access durchführen", "INFO"])
-    # seed_1, key_1, result = canape_diag.performSecurityAccess()
-    # testresult.extend(result)
-    #
-    # request = [0x2E] + diag_ident_KN_TEST_MODE['identifier'] + [0x04]
-    # [response, result] = canape_diag.sendDiagRequest(request)
-    # testresult.append(result)
-    #
-    # testresult.append(["\xa0 Prüfe Positive Response: 0x6E 09F3 ist", "INFO"])
-    # testresult.append(canape_diag.checkPositiveResponse(response, request))
-    # time.sleep(2)
 
     # test step 9
     testresult.append(["[.] Warte weitere 3 min", ""])
