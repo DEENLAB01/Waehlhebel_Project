@@ -17,7 +17,7 @@
 # 1.1  | 19.08.2022 | Devangbhai   | Added correct Precondition
 # 1.2  | 22.08.2022 | Devangbhai   | Rework according to new specification
 # 1.3  | 31.08.2022 | Devangbhai   | Rework according to new specification
-
+# 1.4  | 26.10.2022 | Devangbhai   | change wait time in test step 6 according to new test specification.
 
 
 from _automation_wrapper_ import TestEnv
@@ -194,9 +194,9 @@ try:
     testresult.append(canape_diag.checkEventMemory(aktiv_dtc))
 
     # test step 6
-    testresult.append(["[.] Setze SiShift_01 zyklus zeit auf 20ms und warte 140ms+ 30ms Toleranze (n/2 gültige signal im FIFO)", ""])
+    testresult.append(["[.] Setze SiShift_01 zyklus zeit auf 20ms und warte 200ms+ 35ms Toleranze (3+ n/2 gültige signal im FIFO)", ""])
     hil.SiShift_01__period.set(20)
-    time.sleep(0.140 + 0.030)
+    time.sleep(0.200 + 0.035)
 
     # test step 7
     testresult.append(["[.] Lese Botschaft Waehlhebel_04::WH_Fahrstufe und Fehlerspeicher aus.", ""])

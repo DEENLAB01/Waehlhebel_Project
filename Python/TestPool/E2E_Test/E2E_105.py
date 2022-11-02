@@ -15,6 +15,7 @@
 # ------------------------------------------------------------------------------
 # 1.0  | 01.08.2022 | Devangbhai   | initial
 # 1.1  | 19.08.2022 | Devangbhai   | Added correct Precondition
+# 1.2  | 26.10.2022 | Devangbhai   | Added 200ms in test step 1.1 for tDiagStart
 
 
 from _automation_wrapper_ import TestEnv
@@ -131,8 +132,8 @@ try:
     hil.Systeminfo_01__period.setState("an")
 
     # test step 1.1
-    testresult.append(["[+]  Warte 500 ms.(Wechsel nach Normal aus Initialized-> TDiagStart = 500ms)", ""])
-    time.sleep(0.500)
+    testresult.append(["[+]  Warte 500 ms + 200ms.(Wechsel nach Normal aus Initialized-> TDiagStart = 500ms + 200ms)", ""])
+    time.sleep(0.500 + 0.200)
 
     # test step 1.2
     testresult.append(["[.] Lese Botschaft Waehlhebel_04::WH_Fahrstufe", ""])

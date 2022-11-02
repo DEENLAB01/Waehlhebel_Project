@@ -18,6 +18,8 @@
 # 1.2  | 19.08.2022 | Devangbhai   | Added correct Precondition
 # 1.3  | 22.08.2022 | Devangbhai   | Reworked according to new specification
 # 1.4  | 05.09.2022 | Devangbhai   | Added Ticket ID
+# 1.5  | 26.10.2022 | Devangbhai   | Change the wait time in test step 10
+
 
 
 from _automation_wrapper_ import TestEnv
@@ -225,9 +227,9 @@ try:
     testresult.append(canape_diag.checkEventMemory(aktiv_dtc_bz))
 
     # test step 10
-    testresult.append(["[.] Setze  OTAMC_D_01_BZ  wider fort und warte 1600ms+ Toleranze (n/2 gültige signal im FIFO)",""])
+    testresult.append(["[.] Setze  OTAMC_D_01_BZ  wider fort und warte 2560ms + 400ms Toleranze (3+ n/2 gültige signal im FIFO)",""])
     hil.OTAMC_D_01__OTAMC_D_01_BZ__switch.set(0)
-    time.sleep(1.600 + 0.500)
+    time.sleep(2.560 + 0.400)
 
     # test step 11
     testresult.append(["[.] Programming-Precondition (0x31 0x01 0x02 0x03) prüfen und Lese Fehlerspeicher aus  ", ""])

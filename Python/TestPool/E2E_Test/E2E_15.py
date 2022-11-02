@@ -137,10 +137,10 @@ try:
 
     # test step 4
     testresult.append(["[.] Setze SiShift_01 zyklus zeit auf 20ms und sende einmal SiShift_01_BZ failure in erste Botschaft.", ""])
-    hil.ORU_Control_A_01__ORU_Control_A_01_BZ__switch.set(1)
+    hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(1)
     hil.SiShift_01__period.setState("an")
     time.sleep(0.019)
-    hil.ORU_Control_A_01__ORU_Control_A_01_BZ__switch.set(0)
+    hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(0)
 
     # test step 5
     testresult.append(["[.] Lese Botschaft Waehlhebel_04::WH_Fahrstufe", ""])

@@ -17,6 +17,7 @@
 # 1.1  | 05.08.2022 | Devangbhai   | Added Ticket ID, Precondition
 # 1.2  | 30.08.2022 | Devangbhai   | Added 500ms extra in test step 2.1
 # 1.3  | 31.08.2022 | Devangbhai   | Rework according to new specification
+# 1.4  | 26.10.2022 | Devangbhai   | Change tDiagStart time in test step 2.1
 
 
 
@@ -133,8 +134,8 @@ try:
     hil.Systeminfo_01__period.setState("an")
 
     # test step 2.1
-    testresult.append(["[+]  warte 500ms + 500ms + Toleranz (Wechsel nach Initialized, Der initiale Timeout beträgt 500ms  )", ""])
-    time.sleep(0.500 + 0.500 + 0.020)
+    testresult.append(["[+]  warte 700ms + 500ms + 20ms Toleranz (Wechsel nach Initialized, Der initiale Timeout beträgt 500ms + tDiagStart 700ms )", ""])
+    time.sleep(0.700 + 0.500 + 0.020)
 
     # test step 3
     testresult.append(["[-] Lese Botschaft Waehlhebel_04::WH_Fahrstufe", ""])

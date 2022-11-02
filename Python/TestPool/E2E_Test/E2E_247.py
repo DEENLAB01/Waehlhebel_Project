@@ -14,6 +14,7 @@
 # Rev. | Date       | Name       | Description
 # ------------------------------------------------------------------------------
 # 1.0  | 25.08.2022 | Devangbhai   | initial
+# 1.1  | 26.10.2022 | Devangbhai   | Change wait time in test step 2
 
 from _automation_wrapper_ import TestEnv
 from functions_diag import HexList
@@ -176,9 +177,9 @@ try:
             descr="Prüfe WH_Fahrstufe =! 15 ist"))
 
     # test step 2
-    testresult.append(["[-] Sende SiShift_01_Timeout Fehler für 220ms (11 Zyklen)", ""])
+    testresult.append(["[-] Sende SiShift_01_Timeout Fehler für 140ms (7 Zyklen)", ""])
     hil.SiShift_01__period.set(0)
-    time.sleep(0.220)
+    time.sleep(0.140)
     hil.SiShift_01__period.set(20)
 
     # test step 3

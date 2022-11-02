@@ -15,6 +15,7 @@
 # ------------------------------------------------------------------------------
 # 1.0  | 25.07.2022 | Devangbhai   | initial
 # 1.1  | 19.08.2022 | Devangbhai   | Added correct Precondition
+# 1.1  | 02.11.2022 | Devangbhai   | change the method of seting CRC error
 
 
 from _automation_wrapper_ import TestEnv
@@ -139,13 +140,17 @@ try:
     testresult.append(["[-] Sende einmal CRC-Error für SiShift_01 und  warte 20ms.", ""])
     sec = 0.010
     timeout = sec + t()
-    while timeout > t():
-        SiShift_timestamp = hil.SiShift_01__timestamp.get()
-        hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
-        new_timestamp = hil.SiShift_01__timestamp.get()
-        if SiShift_timestamp != new_timestamp:
-            break
-    time.sleep(0.025)
+    hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(1)
+    hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
+    hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(0)
+    time.sleep(0.020)
+    # while timeout > t():
+    #     SiShift_timestamp = hil.SiShift_01__timestamp.get()
+    #     hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
+    #     new_timestamp = hil.SiShift_01__timestamp.get()
+    #     if SiShift_timestamp != new_timestamp:
+    #         break
+    time.sleep(0.020)
 
     # test step 3
     testresult.append(["[.] Werte Wählhebel_04 Botschaft aus und lese Fehlerspeicher aus", ""])
@@ -194,14 +199,18 @@ try:
     testresult.append(["[-] Sende einmal CRC-Error für SiShift_01 und  warte 20ms.", ""])
     sec = 0.010
     timeout = sec + t()
-    # hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
-    while timeout > t():
-        SiShift_timestamp = hil.SiShift_01__timestamp.get()
-        hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
-        new_timestamp = hil.SiShift_01__timestamp.get()
-        if SiShift_timestamp != new_timestamp:
-            break
-    time.sleep(0.025)
+    hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(1)
+    hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
+    hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(0)
+    time.sleep(0.020)
+    # # hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
+    # while timeout > t():
+    #     SiShift_timestamp = hil.SiShift_01__timestamp.get()
+    #     hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
+    #     new_timestamp = hil.SiShift_01__timestamp.get()
+    #     if SiShift_timestamp != new_timestamp:
+    #         break
+    time.sleep(0.020)
 
     # test step 8
     testresult.append(["[.] Werte Wählhebel_04 Botschaft aus", ""])
@@ -252,15 +261,20 @@ try:
 
     # test step 13
     testresult.append(["[-] Sende einmal CRC-Error für SiShift_01 und  warte 20ms.", ""])
-    sec = 0.010
+    sec = 0.012
     timeout = sec + t()
-    while timeout > t():
-        SiShift_timestamp = hil.SiShift_01__timestamp.get()
-        hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
-        new_timestamp = hil.SiShift_01__timestamp.get()
-        if SiShift_timestamp != new_timestamp:
-            break
-    time.sleep(0.025)
+    hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(1)
+    hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
+    hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(0)
+    time.sleep(0.020)
+    # while timeout > t():
+    #     SiShift_timestamp = hil.SiShift_01__timestamp.get()
+    #     hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
+    #     new_timestamp = hil.SiShift_01__timestamp.get()
+    #     if SiShift_timestamp != new_timestamp:
+    #         break
+    # time.sleep(0.010)
+    time.sleep(0.020)
 
     # test step 14
     testresult.append(["[.] Werte Wählhebel_04 Botschaft aus", ""])
@@ -311,16 +325,19 @@ try:
 
     # test step 19
     testresult.append(["[-] Sende einmal CRC-Error für SiShift_01 und  warte 20ms.", ""])
-    sec = 0.015
+    sec = 0.012
     timeout = sec + t()
-    while timeout > t():
-        SiShift_timestamp = hil.SiShift_01__timestamp.get()
-        hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
-        new_timestamp = hil.SiShift_01__timestamp.get()
-        # if SiShift_timestamp != new_timestamp:
-        #     break
-    time.sleep(0.005)
-    time.sleep(0.025)
+    hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(1)
+    hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
+    hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(0)
+    time.sleep(0.020)
+    # while timeout > t():
+    #     SiShift_timestamp = hil.SiShift_01__timestamp.get()
+    #     hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
+    #     new_timestamp = hil.SiShift_01__timestamp.get()
+    #     if SiShift_timestamp != new_timestamp:
+    #         break
+    time.sleep(0.020)
 
     # test step 20
     testresult.append(["[.] Werte Wählhebel_04 Botschaft aus", ""])

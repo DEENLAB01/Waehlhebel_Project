@@ -16,6 +16,7 @@
 # 1.0  | 31.07.2022 | Devangbhai   | initial
 # 1.1  | 19.08.2022 | Devangbhai   | Added correct Precondition
 # 1.2  | 05.09.2022 | Devangbhai   | Added Ticket ID
+# 1.2  | 26.10.2022 | Devangbhai   | Added 700ms in test step 2.1 for tDiagStart, Change the wait time in test step 4
 
 
 from _automation_wrapper_ import TestEnv
@@ -169,8 +170,8 @@ try:
     hil.Systeminfo_01__period.setState("an")
 
     # test step 2.1
-    testresult.append(["[+]  warte 320ms (Wechsel nach Initialized, Der initiale Timeout beträgt 1500ms )", ""])
-    time.sleep(0.320)
+    testresult.append(["[+]  warte 500ms+ 200ms (Wechsel nach Initialized, Der initiale Timeout beträgt 1500ms )", ""])
+    time.sleep(0.700)
 
     # test step 3
     testresult.append(["[-] Setze OTAMC_D_01 zyklus zeit auf 320ms und sende permament OTAMC_D_01_BZ Fehler (Wechsel nach Safe State)", ""])
@@ -178,8 +179,8 @@ try:
     hil.OTAMC_D_01__period.setState("an")
 
     # test step 4
-    testresult.append(["[.] Warte 2880ms (n-q +1 Botschaft im FIFO =10-2 +1= 9*320ms = 2880ms). ", ""])
-    time.sleep(2.800 + 0.200)
+    testresult.append(["[.] Warte 320ms (1st ist gültige Botschaft)+ 160ms (Jitter)+ 2880ms (n-q +1 Botschaft im FIFO =10-2 +1= 9*320ms = 2880ms). ", ""])
+    time.sleep(0.320 + 2.880 + 0.160)
 
     # test step 5
     checkProgrammingPrecondition(exp_content=[0xA7], ticket_id="EGA-PRM-289")

@@ -17,6 +17,7 @@
 # 1.1  | 05.08.2022 | Devangbhai   | Added Ticket ID
 # 1.2  | 18.08.2022 | Devangbhai   | Added correct Precondition
 # 1.3  | 31.08.2022 | Devangbhai   | Rework according to new specification
+# 1.4  | 26.10.2022 | Devangbhai   | Change tDiagStart time in test step 2.1
 
 
 
@@ -172,8 +173,8 @@ try:
     hil.Systeminfo_01__period.setState("an")
 
     # test step 2.1
-    testresult.append(["[+]  warte 1500ms + 500ms + Toleranz (Wechsel nach Initialized, Der initiale Timeout beträgt 1500ms + 500ms tDiagStart)", ""])
-    time.sleep(1.500 + 0.500 + 0.200)
+    testresult.append(["[+]  warte 1500ms + 700ms + Toleranz (Wechsel nach Initialized, Der initiale Timeout beträgt 1500ms + 700ms tDiagStart)", ""])
+    time.sleep(1.500 + 0.700 + 0.200)
 
     # test step 3
     testresult.append(["[-] Programmiervorbedingungen prüfen: 0x3101 + {}" .format(HexList(test_data['identifier'])), ""])

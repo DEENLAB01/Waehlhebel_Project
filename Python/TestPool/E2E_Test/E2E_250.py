@@ -1,27 +1,25 @@
 # ******************************************************************************
 # -*- coding: latin1 -*-
-# File    : E2E_59.py
-# Title   : ORU_Control_D_BZ_Error_Diag_Suppressed
-# Task    : Erstmalige Fehlererkennung ORU_Control_D_01_BZ während "Initialized" bei ausgeblendeter Diagnose.
+# File    : E2E_250.py
+# Title   : ORU_Control_D_BZ_Error_Jump
+# Task    : BZ-Sprünge abwechselnd mit 2 richtigen BZ-Werten beaufschlagen für n/3+1 Zyklen, um  qualifizierten BZ-Fehlereintrag zu erhalten.
 #
 # Author  : Devangbhai Patel
-# Date    : 31.07.2022
-# Copyright 2022 Eissmann Automotive Deutschland GmbH
+# Date    : 13.10.2022
+# Copyright 2021 Eissmann Automotive Deutschland GmbH
 #
 # ******************************************************************************
 # ********************************* Version ************************************
 # ******************************************************************************
 # Rev. | Date       | Name       | Description
 # ------------------------------------------------------------------------------
-# 1.0  | 31.07.2022 | Devangbhai   | initial
-# 1.1  | 19.08.2022 | Devangbhai   | Added correct Precondition
-# 1.2  | 26.10.2022 | Devangbhai   | Added 700ms in test step 2.1 for tDiagStart, Change the wait time in test step 4
-
+# 1.0  | 13.10.2022 | Devangbhai   | initial
 
 
 from _automation_wrapper_ import TestEnv
 from functions_diag import HexList
 from diag_identifier import identifier_dict
+from CRC_values import crc_dict
 import functions_common
 from ttk_checks import basic_tests
 import functions_gearselection
@@ -31,6 +29,9 @@ import functions_nm
 from ttk_base.values_base import meta
 import os
 
+# Instantiate test environment
+testenv = TestEnv()
+
 def checkProgrammingPrecondition(exp_content):
     """ Checks the programming precondition
     Parameters:
@@ -39,18 +40,15 @@ def checkProgrammingPrecondition(exp_content):
         None
     """
     # test step
-    testresult.append(["[.] Programmiervorbedingungen prüfen: 0x3101 + {}"
-                       .format(HexList(test_data['identifier'])),
-                       ""])
     request = [0x31, 0x01] + test_data['identifier']
     response, result = canape_diag.sendDiagRequest(request)
     testresult.append(result)
 
-    testresult.append(["[+] Auf positive Response überprüfen", ""])
+    testresult.append(["\xa0Auf positive Response überprüfen", ""])
     testresult.append(canape_diag.checkPositiveResponse(response, request, 4))
 
     # test step
-    testresult.append(["[.] Prüfe Inhalt der Response", ""])
+    testresult.append(["\xa0 Prüfe Inhalt der Response", ""])
     if exp_content:
         testresult.append(basic_tests.checkStatus(meta(len(response[4:]),
                                                        alias="Länge des Inhalts"),
@@ -71,10 +69,6 @@ def checkProgrammingPrecondition(exp_content):
                                                   0,
                                                   descr="Kein Inhalt - Liste leer"))
 
-
-# Instantiate test environment
-testenv = TestEnv()
-
 try:
     # #########################################################################
     # Testenv #################################################################
@@ -88,14 +82,21 @@ try:
     func_com = functions_common.FunctionsCommon(testenv)
     func_nm = functions_nm.FunctionsNM(testenv)
     test_data = identifier_dict['Check Programming Preconditions']
+    ORU_D_CRC= crc_dict['ORU_Control_D_01']
     exp_wrong_prec = [0xA7]
 
+    aktiv_dtc = [(0xE0010B, 0x27)]
+    passiv_dtc = [(0xE0010B, 0x26)]
+
     # set Testcase ID #########################################################
-    testresult.setTestcaseId("E2E_59")
+    testresult.setTestcaseId("E2E_250")
 
     # TEST PRE CONDITIONS #####################################################
     testresult.append(["[#0] Test Vorbedingungen", ""])
     testresult.append(["[+] Starte ECU (KL30 an, KL15 an)", ""])
+
+    testresult.append(["[.] Setze SiShift_FlgStrtNeutHldPha = 0", ""])
+    hil.SiShift_01__SIShift_FlgStrtNeutHldPha__value.set(0)
 
     testresult.append(["[.] Setze OTAMC_D_01 VehicleProtectedEnvironment auf 0", ""])
     hil.OTAMC_D_01__VehicleProtectedEnvironment_D__value.set(0)
@@ -117,8 +118,8 @@ try:
     testresult.append(["[.] Setze PropulsionSystemActive auf 0 (NotAktiv) ", ""])
     hil.OBD_04__MM_PropulsionSystemActive__value.set(0)
 
-    testresult.append(["[.] Setze Systeminfo_01_SI_NWDF_30 auf 0", ""])
-    hil.Systeminfo_01__SI_NWDF_30__value.set(0)
+    testresult.append(["[.] Setze Systeminfo_01_SI_NWDF_30 auf 1", ""])
+    hil.Systeminfo_01__SI_NWDF_30__value.set(1)
 
     hil.cl30_on__.set(1)
     hil.cl15_on__.set(1)
@@ -150,50 +151,72 @@ try:
     time.sleep(16)
 
     testresult.append(basic_tests.checkRange(value=hil.cc_mon__A,
-                                             min_value=0.0,  # 0mA
-                                             max_value=0.006,  # 6mA
-                                             descr="Prüfe, dass Strom zwischen 0mA und 6mA liegt", ))
+                                  min_value=0.0,  # 0mA
+                                  max_value=0.006,  # 6mA
+                                  descr="Prüfe, dass Strom zwischen 0mA und 6mA liegt",))
 
     testresult.append(["[#0] Starte Testprozess: {}".format(testenv.script_name.split('.py')[0]), ""])
 
-    # test step 1 and 2
-    testresult.append(["[.] Schalte Kl30 ein, setze ORU_Control_D_01 Zykluszeit auf 0.", ""])
-    testresult.append(["[.] Schaltle Kl15 ein und RBS an und warte bis erste NM Botschaft empfängt ", ""])
-    hil.ClampControl_01__KST_KL_15__value.set(1)
+    # test step 1
+    testresult.append(["[.] Schalte Kl.30 ein und starte RBS und warte bis erste NM Botschaft empfängt", ""])
     hil.cl15_on__.set(1)
-    func_nm.hil_ecu_e2e(allstate=1, sisft=1, otamc=1, oruA=1, ourD=0)
+    func_nm.hil_ecu_e2e(allstate=1, sisft=1, otamc=1, oruA=1, ourD=1)
     result = func_nm.is_bus_started()
     testresult.append(result)
-    hil.Systeminfo_01__period.set(20)
-    time.sleep(0.010)
-    hil.Systeminfo_01__period.setState("an")
 
-    # test step 2.1
-    testresult.append(["[+]  warte 500ms+ 200msms (Wechsel nach Initialized, Der initiale Timeout beträgt 1500ms )", ""])
-    time.sleep(0.700)
+    # test step 1.1
+    testresult.append(["[+] Warte 2500ms", ""])
+    time.sleep(2.5)
+
+    testresult.append(["[.] Programming-Precondition (0x31 0x01 0x02 0x03) prüfen. ", ""])
+    checkProgrammingPrecondition(exp_content=[])
+
+    # test step 2
+    testresult.append(["[-]  Warte bis ORU_Control_D = 0.", ""])
+    while True:
+        BZ_value = hil.ORU_Control_D_01__ORU_Control_D_01_BZ__value.get()
+        if BZ_value == 0:
+            hil.ORU_Control_D_01__ORU_Control_D_01_BZ__switch.set(1)
+            time.sleep(0.300)
+            break
 
     # test step 3
-    testresult.append(["[-] Setze ORU_Control_D_01 zyklus zeit auf 320ms und sende permament ORU_Control_D_01_BZ Fehler (Wechsel nach Safe State)", ""])
-    hil.ORU_Control_D_01__ORU_Control_D_01_BZ__switch.set(1)
-    hil.ORU_Control_D_01__period.setState("an")
+    testresult.append(["[.]  Überschreibe ORU_Control_D_BZ 4x (n/3+1) mit je einer S-PDU mit um (BSZ_DeltaMaxInit+3 = 5)"
+                       " inkrementierten Botschafszähler, dann zwei S-PDUs mit um 1 inkrementierten Botschafszähler. "
+                       "(ausgehend von BZ=0: 1->5, 2, 3, 4->8, 5, 6, 7->11, 8, 9, 10->14)", ""])
+    bz_ = [5, 2, 3, 8, 5, 6, 11, 8, 9, 14]
+    for i in bz_:
+        if i== bz_[-1]:
+            hil.ORU_Control_D_01__ORU_Control_D_01_CRC__value.set(ORU_D_CRC['%s' % i])
+            hil.ORU_Control_D_01__ORU_Control_D_01_BZ__value.set(i)
+            print i, "THIS VALUE IS SET", ORU_D_CRC['%s' % i]
+            hil.ORU_Control_D_01__ORU_Control_D_01_BZ__switch.set(0)
+            time.sleep(0.160)
 
-    # test step 4
-    testresult.append(["[.] Warte 320ms (1st ist gültige Botschaft)+ 160ms (Jitter)+ 2880ms (n-q +1 Botschaft im FIFO =10-2 +1= 9*320ms = 2880ms).", ""])
-    time.sleep(0.320 + 2.880 + 0.160)
+            break
+        else:
+            hil.ORU_Control_D_01__ORU_Control_D_01_CRC__value.set(ORU_D_CRC['%s' % i])
+            hil.ORU_Control_D_01__ORU_Control_D_01_BZ__value.set(i)
+            print i, "THIS VALUE IS SET", ORU_D_CRC['%s' % i]
+            time.sleep(0.320)
 
     # test step 5
-    checkProgrammingPrecondition(exp_content=[0xA7])
+    testresult.append(["[.] Lese Fehlerspeicher aus", ""])
+    testresult.append(canape_diag.checkEventMemory(aktiv_dtc))
 
     # test step 6
-    testresult.append(["[-] Lese Fehlerspeicher (muss leer sein)", ""])
-    testresult.append(canape_diag.checkEventMemoryEmpty())
+    testresult.append(["[.]  Warte 2560 ms (3+ n/2) + 320 ms (Toleranz) ", ""])
+    time.sleep(2.560 + 0.320)
 
-    # reset switsch
-    hil.ORU_Control_D_01__ORU_Control_D_01_BZ__switch.set(0)
+    # test step 7
+    testresult.append(["[.] Lese Fehlerspeicher aus", ""])
+    testresult.append(canape_diag.checkEventMemory(passiv_dtc))
+
     # TEST POST CONDITIONS ####################################################
     testresult.append(["[-] Test Nachbedingungen", ""])
-    testresult.append(["[+] ECU ausschalten", ""])
+    testresult.append(["[-] ECU ausschalten", ""])
     testenv.shutdownECU()
+
 
 finally:
     # #########################################################################

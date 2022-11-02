@@ -129,7 +129,7 @@ try:
 
     # test step 2
     testresult.append(["[-] Sende einmal CRC-Error für SiShift_01 und warte 10ms.", ""])
-    sec = 0.010
+    sec = 0.014
     timeout = sec + t()
     hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
     while timeout > t():
@@ -155,6 +155,7 @@ try:
     hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
     while timeout > t():
         hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
+    time.sleep(0.005)
 
     # test step 6
     testresult.append(["[.]  Warte  t =15ms (sampling cycle time = 10ms+ 5ms tolerenze für WH_04 message) und werte Wählhebel_04 Botschaft erneut aus", ""])

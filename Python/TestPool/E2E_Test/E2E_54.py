@@ -15,6 +15,8 @@
 # ------------------------------------------------------------------------------
 # 1.0  | 20.07.2022 | Devangbhai   | initial
 # 1.1  | 19.08.2022 | Devangbhai   | Added correct Precondition
+# 1.2  | 26.10.2022 | Devangbhai   | change wait time in test step 8 according to new test specification.
+
 
 
 from _automation_wrapper_ import TestEnv
@@ -161,9 +163,9 @@ try:
     #         descr="Prüfe WH_Fahrstufe != 15 ist"))
 
     # test step 8
-    testresult.append(["[.] Sende keine mehr SiShift_BZ failure und warte 140ms. (Wechsel nach Normal State, n/2 Botschaft im FIFO = 14/2= 7*20 = 140ms )", ""])
+    testresult.append(["[.] Sende keine mehr SiShift_BZ failure und warte 200ms + 35ms tolerance (Wechsel nach Normal State,3+n/2 Botschaft im FIFO = 3+ 14/2= 10*20 = 200ms )", ""])
     hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(0)
-    time.sleep(0.140 + 0.035)
+    time.sleep(0.200 + 0.035)
 
     # test step 9
     testresult.append(["[.] Lese Botschaft Waehlhebel_04::WH_Fahrstufe", ""])

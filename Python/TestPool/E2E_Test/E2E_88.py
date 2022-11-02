@@ -16,6 +16,7 @@
 # 1.0  | 25.07.2022 | Devangbhai   | initial
 # 1.1  | 19.08.2022 | Devangbhai   | Added correct Precondition
 # 1.2  | 23.08.2022 | Devangbhai   | Reworked according to new specification
+# 1.4  | 26.10.2022 | Devangbhai   | change wait time in test step 10 according to new test specification.
 
 
 
@@ -194,9 +195,9 @@ try:
     testresult.append(canape_diag.checkEventMemory(aktiv_dtc_bz))
 
     # test step 10
-    testresult.append(["[.] Setze  SiShift_01_BZ wider fort und warte 140ms + Toleranze (n/2 gültige signal im FIFO)", ""])
+    testresult.append(["[.] Setze  SiShift_01_BZ wider fort und warte 200ms + 35ms Toleranze (3+ n/2 gültige signal im FIFO)", ""])
     hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(0)
-    time.sleep(0.140 + 0.025)
+    time.sleep(0.200 + 0.035)
 
     # test step 11
     testresult.append(["[.] Werte Wählhebel_04 Botschaft aus und Lese Fehlerspeicher aus", ""])

@@ -130,7 +130,7 @@ try:
 
     # test step 2
     testresult.append(["[-] Sende einmal CRC-Error für SiShift_01", ""])
-    sec = 0.010
+    sec = 0.014
     timeout = sec + t()
     hil.SiShift_01__SiShift_01_20ms_CRC__value.set(0)
     while timeout > t():

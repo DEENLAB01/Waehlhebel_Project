@@ -17,6 +17,7 @@
 # 1.1  | 19.08.2022 | Devangbhai   | Added correct Precondition
 # 1.2  | 22.08.2022 | Devangbhai   | Rework according to new specification
 # 1.3  | 31.08.2022 | Devangbhai   | Rework according to new specification
+# 1.4  | 26.10.2022 | Devangbhai   | Change the wait time in test step 6
 
 
 
@@ -196,9 +197,9 @@ try:
     testresult.append(canape_diag.checkEventMemory(aktiv_dtc))
 
     # test step 6
-    testresult.append(["[.] Setze ORU_Control_D zyklus zeit auf 320ms und warte 1600ms+ 200ms Toleranze (n/2 gültige signal im FIFO)", ""])
+    testresult.append(["[.] Setze ORU_Control_D zyklus zeit auf 320ms und warte 2560ms+ 160ms Toleranze (3 + n/2 gültige signal im FIFO)", ""])
     hil.ORU_Control_D_01__period.set(320)
-    time.sleep(1.600 + 0.200)
+    time.sleep(2.560 + 0.160)
 
     # test step 7
     testresult.append(["[.] Prüfe Programming-Precondition (0x31 0x01 0x02 0x03) und lese Fehlerspeicher aus.", ""])

@@ -17,6 +17,7 @@
 # 1.1  | 16.08.2022 | Devangbhai   | Added 2.5 wait time insted of 1.5 in test step 1.1. Added extra wait time and clearing of dtc in test step 7
 # 1.2  | 19.08.2022 | Devangbhai   | Added correct Precondition
 # 1.3  | 23.08.2022 | Devangbhai   | Reworked according to new specification
+# 1.4  | 26.10.2022 | Devangbhai   | Change the wait time in test step 10
 
 
 
@@ -221,9 +222,9 @@ try:
     testresult.append(canape_diag.checkEventMemory(aktiv_dtc_bz))
 
     # test step 10
-    testresult.append(["[.] Setze  ORU_Control_A_01_BZ  wider fort und warte 2500ms + Toleranze (n/2 gültige signal im FIFO)",""])
+    testresult.append(["[.] Setze  ORU_Control_A_01_BZ  wider fort und warte 4000ms + 400ms Toleranze (3+ n/2 gültige signal im FIFO)",""])
     hil.ORU_Control_A_01__ORU_Control_A_01_BZ__switch.set(0)
-    time.sleep(2.500 + 0.700)
+    time.sleep(4.000 + 0.400)
 
     # test step 11
     testresult.append(["[.] Programming-Precondition (0x31 0x01 0x02 0x03) prüfen und Lese Fehlerspeicher aus  ", ""])
