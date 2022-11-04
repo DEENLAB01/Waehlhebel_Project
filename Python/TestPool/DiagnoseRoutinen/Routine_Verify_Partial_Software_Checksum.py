@@ -83,8 +83,8 @@ try:
     testresult.extend(canape_diag.checkDiagSession('default'))
 
     # test step 2
-    testresult.append(["[.] Routine starten: 0x3101 0544 20 04 00 50 31 22 AA 9D (Verify_partial_software_checksum)", ""])
-    request = [0x31, 0x01] + diag_ident['identifier'] + [0x20, 0x04, 0x00, 0x50, 0x31, 0x22, 0xAA, 0x9D]
+    testresult.append(["[.] Routine starten: 0x3101 0544 20 04 00 50 8B 17 39 D5 (Verify_partial_software_checksum)", ""])
+    request = [0x31, 0x01] + diag_ident['identifier'] + [0x20, 0x04, 0x00, 0x50, 0x8B, 0x17, 0x39, 0xD5]
     [response, result] = canape_diag.sendDiagRequest(request)
     testresult.append(result)
 
@@ -107,8 +107,8 @@ try:
     testresult.extend(canape_diag.checkDiagSession('extended'))
 
     # test step 7
-    testresult.append(["[.] Routine starten: 0x3101 0544 20 04 00 50 31 22 AA 9D (Verify_partial_software_checksum)", ""])
-    request = [0x31, 0x01] + diag_ident['identifier'] + [0x20, 0x04, 0x00, 0x50, 0x31, 0x22, 0xAA, 0x9D]
+    testresult.append(["[.] Routine starten: 0x3101 0544 20 04 00 50 8B 17 39 D5 (Verify_partial_software_checksum)", ""])
+    request = [0x31, 0x01] + diag_ident['identifier'] + [0x20, 0x04, 0x00, 0x50, 0x8B, 0x17, 0x39, 0xD5]
     [response, result] = canape_diag.sendDiagRequest(request)
     testresult.append(result)
 
@@ -130,8 +130,8 @@ try:
     testresult.extend(canape_diag.checkDiagSession('programming'))
 
     # test step 12
-    testresult.append(["[.] Routine starten: 0x3101 0544 20 04 00 50 31 22 AA 9D (Verify_partial_software_checksum)", ""])
-    request = [0x31, 0x01] + diag_ident['identifier'] + [0x20, 0x04, 0x00, 0x50, 0x31, 0x22, 0xAA, 0x9D]
+    testresult.append(["[.] Routine starten: 0x3101 0544 20 04 00 50 8B 17 39 D5 (Verify_partial_software_checksum)", ""])
+    request = [0x31, 0x01] + diag_ident['identifier'] + [0x20, 0x04, 0x00, 0x50, 0x8B, 0x17, 0x39, 0xD5]
     [response, result] = canape_diag.sendDiagRequest(request)
     testresult.append(result)
 
@@ -158,8 +158,8 @@ try:
     testresult.extend(canape_diag.checkDiagSession('factory_mode'))
 
     # test step 18
-    testresult.append(["[.] Routine starten: 0x3101 0544 20 04 00 50 31 22 AA 9D (Verify_partial_software_checksum)", ""])
-    request = [0x31, 0x01] + diag_ident['identifier'] + [0x20, 0x04, 0x00, 0x50, 0x31, 0x22, 0xAA, 0x9D]
+    testresult.append(["[.] Routine starten: 0x3101 0544 20 04 00 50 8B 17 39 D5 (Verify_partial_software_checksum)", ""])
+    request = [0x31, 0x01] + diag_ident['identifier'] + [0x20, 0x04, 0x00, 0x50, 0x8B, 0x17, 0x39, 0xD5]
     [response, result] = canape_diag.sendDiagRequest(request)
     testresult.append(result)
 

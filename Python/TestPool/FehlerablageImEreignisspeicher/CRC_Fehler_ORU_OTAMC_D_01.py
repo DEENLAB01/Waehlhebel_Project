@@ -129,7 +129,7 @@ try:
 
     # test step 4-4.2
     testresult.append(["[.] Sende ersten CRC-Fehler für OTAMC_D_01::OTAMC_D_01_CRC ", ""])
-    sec = 0.310
+    sec = 0.200
     timeout = sec + t()
     while timeout > t():
         hil.OTAMC_D_01__OTAMC_D_01_CRC__value.set(0)

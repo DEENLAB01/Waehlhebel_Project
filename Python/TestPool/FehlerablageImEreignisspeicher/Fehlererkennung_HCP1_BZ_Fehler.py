@@ -17,6 +17,7 @@
 # 1.0  | 17.05.2022  | Mohammed | initial
 # 1.1  | 14.07.2022 | Mohammed | Added tMSG_Timeout: n-q+1, n=10, q=2
 # 1.3  | 20.07.2022  | Mohammed  | Added Fehler Id
+# 1.4  | 02.11.2022 | Devangbhai | Added 3 more cycle wait in test step 7
 #******************************************************************************
 
 from _automation_wrapper_ import TestEnv
@@ -124,7 +125,7 @@ try:
 
     # test step 3
     testresult.append(["[.] Warte 260ms (tMSG_Timeout: n-q+1, n=14, q=2) + 10ms(Tolerenz)", ""])
-    time.sleep(0.270)
+    time.sleep(0.280)
 
     # test step 4
     testresult.append(["[.] Lese Botschaft Wahlhebel_04::WH_Fahrstufe", ""])
@@ -143,8 +144,8 @@ try:
     hil.SiShift_01__SiShift_01_20ms_BZ__switch.set(0)
 
     # test step 7
-    testresult.append(["[.] Warte 140ms  (tMSG_Timeoutn: n/2, n=14) + 10ms (Toleranz)", ""])
-    time.sleep(0.160)
+    testresult.append(["[.] Warte 140ms  (tMSG_Timeoutn: 3+ n/2, n=14) + 10ms (Toleranz)", ""])
+    time.sleep(0.200 + 0.10)
 
     # test step 8
     testresult.append(["[.] Lese Botschaft Wahlhebel_04::WH_Fahrstufe", ""])

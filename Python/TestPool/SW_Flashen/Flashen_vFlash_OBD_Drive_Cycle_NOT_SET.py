@@ -152,7 +152,7 @@ try:
 
     # test step 10 -10.3
     testresult.append(["[.] vFlash Software Pfade anrufen.", ""])
-    flash_file_path = r"C:\Users\DEENLAB01\Desktop\SW0111\vFlash_Prod\Project1.vflash" ### must be vFlash path with ISO CAN ID
+    flash_file_path = r"C:\Users\DEENLAB01\Desktop\Software_version\SW0112\Vflash_Project\Production_Key\ISO\Project1.vflash" ### must be vFlash path with ISO CAN ID
     vflash_dll_path = r'C:\Program Files (x86)\Vector vFlash 7\Bin\VFlashAutomation.dll'
     activate_network = False
 
@@ -168,9 +168,9 @@ try:
 
     try:
         vf.flash(flash_file_path, testresult, activate_network, flash_timeout)
-        testresult.append(["\x0aPrüfe Vflash: SW 0111 Flashen Erfolgerich", "PASSED"])
+        testresult.append(["\x0aPrüfe Vflash: SW 0112 Flashen Erfolgerich", "PASSED"])
     except vflash_api.VFlashResultError, ex:
-        testresult.append(["\x0a Vflash: SW 0111 Flashen Erfolgerich nicht Erfolgerich %s" % ex, "FAILED"])
+        testresult.append(["\x0a Vflash: SW 0112 Flashen Erfolgerich nicht Erfolgerich %s" % ex, "FAILED"])
     testresult.append(["[-0]", ""])
 
     # test step 11
@@ -185,7 +185,7 @@ try:
 
     # test step
     testresult.append(["\x0aInhalt der Response überprüfen: aktuelle SW Version> = <exp_version>", ""])
-    testresult.append(canape_diag.checkResponse(response, [0x62, 0xF1, 0x89, 0x30, 0x31, 0x31, 0x31], ticket_id='FehlerId:EGA-PRM-236'))  ########### added
+    testresult.append(canape_diag.checkResponse(response, [0x62, 0xF1, 0x89, 0x30, 0x31, 0x31, 0x32], ticket_id='FehlerId:EGA-PRM-236'))  ########### added
 
     # test step 12
     testresult.append(["[.] Auslesen der Programmzugriffe: 0x220407 und abspeichern (vor dem Flashen)", ""])

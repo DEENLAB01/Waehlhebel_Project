@@ -70,7 +70,7 @@ try:
     hil.ORU_Control_A_01__OnlineRemoteUpdateControlA__value.set(0)
     testresult.append(["[.] Setze ORU_Control_D_01::OnlineRemoteUpdateControlD = 0 (IDLE)", ""])
     hil.ORU_Control_D_01__OnlineRemoteUpdateControlD__value.set(0)
-    #time.sleep(2)
+    time.sleep(3)
 
     # TEST PROCESS ############################################################
     testresult.append(["\n Starte Testprozess: {}".format(testenv.script_name.split('.py')[0]), ""])

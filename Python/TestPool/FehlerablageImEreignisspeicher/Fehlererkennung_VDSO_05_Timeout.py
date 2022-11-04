@@ -21,6 +21,8 @@
 # 1.4  | 13.01.2022  | Mohammed   | Added Precontion Systeminfo_01__SI_NWD, Systeminfo_01__SI_NWDF_30
 # 1.5  | 27.01.2022  | Mohammed   | Corrected Timing
 # 1.9  | 04.08.2022 | Mohammed     | Change TestSpec Name
+# 1.10 | 11.10.2022 | Devangbhai   | Change in wait time in test step 2.1 from 5s to 500ms
+
 #******************************************************************************
 
 from _automation_wrapper_ import TestEnv
@@ -77,8 +79,8 @@ try:
     testresult.append(["[+] Ändere Zykluszeit und prüfe Fehlerspeicher", ""])
     testresult.append(["Setze Zykluszeit auf 0ms", "INFO"])
     hil.VDSO_05__period.set(0)
-    testresult.append(["Warte maximum tMSG_CYCLE (%sms)" % (wait_time), "INFO"])
-    time.sleep(5)
+    testresult.append(["Warte maximum 500ms (%sms)", "INFO"])
+    time.sleep(0.5)
     testresult.append(["[.] Lese Fehlerspeicher (Timeout DTC aktiv)", ""])
     testresult.append(canape_diag.checkEventMemory([(0xE00104, 0x27)], ticket_id='FehlerId:EGA-PRM-145'))
 

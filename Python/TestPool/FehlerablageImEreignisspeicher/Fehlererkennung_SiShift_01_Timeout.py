@@ -24,6 +24,7 @@
 # 1.7  | 20.07.2022 | Mohammed     | Added Fehler Id
 # 1.8  | 21.07.2022 | Mohammed     | Added Korrektur gültige Zykluszeit aufgrund E2E-Implementierung
 # 1.9  | 04.08.2022 | Mohammed     | Change TestSpec Name
+# 1.10 | 02.11.2022 | Devangbhai   | In test step 13 added 3 extra cycle time according to E2E specification
 # ******************************************************************************
 
 from _automation_wrapper_ import TestEnv
@@ -152,8 +153,8 @@ try:
     period_var.set(cycle_time)
 
     # Test step 13
-    testresult.append(["[.] Warte 140ms  (tMSG_Timeoutn: n/2, n=14) + 10ms (Toleranz)", ""])
-    time.sleep(.150)
+    testresult.append(["[.] Warte 200ms  (tMSG_Timeoutn: 3 + n/2, n=14) + 20ms (Toleranz)", ""])
+    time.sleep(.200 + 0.020)
     testresult.append(["[.] Lese Fehlerspeicher (Timeout DTC passiv)", ""])
 
     # Test step 14

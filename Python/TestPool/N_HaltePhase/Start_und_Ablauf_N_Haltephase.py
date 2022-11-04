@@ -338,6 +338,7 @@ try:
     ]
     func_nm.hil_ecu_tx_off_state("an")
     check_cycletime(sec=0.100, nm_msg=True)
+    time.sleep(0.150)
 
 
 

@@ -1495,7 +1495,7 @@ class ResponseDictionaries(object):
         return waehlhebel_ssw_moduls_version, all_ssw_modul_id, vendor_id
 
     def Programming_preconditions(self):
-        exp_preconditions = [0x0A, 0x0A, 0x9A, 0x0C, 0x0B, 0x83, 0x81, 0x05, 0x95, 0xA5, 0xA7]
+        exp_preconditions = [0x0A, 0x0A, 0x9A, 0x0C, 0x0B, 0x83, 0x81, 0x05, 0x95, 0xA5, 0xA7, 0x8B]
 
         all_preconditions = {
             0x05: "Fahrzeuggeschwindigkeit ist nicht Null",
@@ -1505,7 +1505,7 @@ class ResponseDictionaries(object):
             0x0C: "Temperatur zu niedrig",
             0x81: "Sperrzeit für Programmierung ist aktiv",
             0x83: "Maximale Anzahl der Programmierungen erreicht",
-            #0x8B: "Steuergeraet defekt im Ereignisspeicher eingetragen",
+            0x8B: "Steuergeraet defekt im Ereignisspeicher eingetragen",
             0x95: "Elektrische Fahrbereitschaft ist nicht aus",
             0xA5: "Feststellbremse nicht geschlossen",
             #0xA6: "KL30 zu niedrig",

@@ -131,7 +131,7 @@ try:
 
     # test step 4-4.2
     testresult.append(["[.] Sende ersten CRC-Fehler für ORU_Control_D_01::ORU_Control_D_01_CRC", ""])
-    sec = 0.310
+    sec = 0.200
     timeout = sec + t()
     while timeout > t():
         hil.ORU_Control_D_01__ORU_Control_D_01_CRC__value.set(0)

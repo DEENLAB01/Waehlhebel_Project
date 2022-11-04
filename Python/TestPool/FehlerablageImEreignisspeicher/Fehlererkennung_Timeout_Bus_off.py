@@ -90,7 +90,7 @@ try:
 
     # test step 5
     testresult.append(["[.] Lese Fehlerspeicher aus ", ""])
-    testresult.append(["\x0aPrüfe Aktiv DTC:  0xE00100 und 0xE00101 im Fehlerspeicher", ""])
+    testresult.append(["\x0aPrüfe Aktiv DTC im Fehlerspeicher", ""])
     testresult.append(canape_diag.checkEventMemory(active_dtcs, ticket_id='FehlerId:EGA-PRM-230'))
 
     # test step 6
@@ -103,7 +103,7 @@ try:
 
     # test step 8
     testresult.append(["[.] Lese Fehlerspeicher aus", ""])
-    testresult.append(["\x0aPrüfe Passiv DTC:  0xE00100 und 0xE00101 im Fehlerspeicher", ""])
+    testresult.append(["\x0aPrüfe Passiv DTC im Fehlerspeicher", ""])
     testresult.append(canape_diag.checkEventMemory(passive_dtcs, ticket_id='FehlerId:EGA-PRM-230'))
 
     # test step 9

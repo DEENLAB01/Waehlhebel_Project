@@ -43,8 +43,8 @@ try:
     hil = testenv.getHil()
     diag_ident = identifier_dict['VW Logical Software Block Version']
     exp_sw_versions = {
-        1: {'Block name': 'Bootloader', 'version': 187},
-        2: {'Block name': 'Application', 'version': 111},
+        1: {'Block name': 'Bootloader', 'version': 190},
+        2: {'Block name': 'Application', 'version': 112},
       #  3: {'Block name': 'Datensatz', 'version': None},
     }
     number_softwareblocks_n = len(exp_sw_versions)

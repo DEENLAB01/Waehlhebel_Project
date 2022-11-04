@@ -102,7 +102,7 @@ identifier_dict = {
         'VW Logical Software Block Counter Of Programming Attempts': {
                     'identifier': [0x04, 0x07],
                     'name': 'VW Logical Software Block Counter Of Programming Attempts',
-                    'expected_response': [0x00, 0x01, 0x00, 0x12], # wird nach jedem Update hochgezählt, kein Defaultwert/Dummywert verfügbar (EOL auf 0 gesetzt)
+                    'expected_response': [0x00, 0x01, 0x00, 0x17], # wird nach jedem Update hochgezählt, kein Defaultwert/Dummywert verfügbar (EOL auf 0 gesetzt)
                     'exp_data_length': 4,  # Bytes (2 * number of SW blocks) ## Replace 512 to 2
                     },
         'ECU Serial Number': {
@@ -114,7 +114,7 @@ identifier_dict = {
         'VW Application Software Version Number': {
                     'identifier': [0xF1, 0x89],
                     'name': 'VW Application Software Version Number',
-                    'expected_response': [0x30, 0x31, 0x31, 0x31],
+                    'expected_response': [0x30, 0x31, 0x31, 0x32],
                     'exp_data_length': 4,  # Bytes
                     },
         'System Supplier ECU Software Number': {
@@ -238,7 +238,7 @@ identifier_dict = {
                     'identifier': [0x04, 0x48],
                     'name': 'Programming_preconditions',
                     'expected_response': precond, # VORSICHT: this is a list, Abfrage implementierter Vorbedingungen ToDo
-                    'exp_data_length': 11 # len(precond), #3 + len(precond),  # Bytes - 0x00 - 0xFF ### added 1 to 3 +
+                    'exp_data_length': 12 # len(precond), #3 + len(precond),  # Bytes - 0x00 - 0xFF ### added 1 to 3 +
                     },
         'OBD_class_description': {
                     'identifier': [0x02, 0xCF],
@@ -249,7 +249,7 @@ identifier_dict = {
         'VW_system_firmware_versions': {
                     'identifier': [0xF1, 0xB8],
                     'name': 'VW_system_firmware_versions',
-                    'expected_response': [0x01, 0x30, 0x31, 0x38, 0x37], # n=1, aktuelle Bootloaderversion 0181
+                    'expected_response': [0x01, 0x30, 0x31, 0x39, 0x30], # n=1, aktuelle Bootloaderversion 0190
                     'exp_data_length': 5,  # Bytes - 1 + (n * 4) Bytes
         },
         'VW_logical_block_downgrade_protection_versions': {
@@ -273,7 +273,7 @@ identifier_dict = {
         'VW Logical Software Block Version': {
                     'identifier': [0xF1, 0xAB],
                     'name': 'VW Logical Software Block Version',
-                    'expected_response': [0x30, 0x31, 0x38, 0x37, 0x30, 0x31, 0x31, 0x31],  # logische Blöcke Bootloader und Applikation, aktuell 2001, 1005 Überprüfen ToDo
+                    'expected_response': [0x30, 0x31, 0x39, 0x30, 0x30, 0x31, 0x31, 0x32],  # logische Blöcke Bootloader und Applikation, aktuell 2001, 1005 Überprüfen ToDo
                     'exp_data_length': 8,  # n * 4 Bytes, n=2
         },
         'ECU Programming Information': {
@@ -327,7 +327,7 @@ identifier_dict = {
                     },
                     'name': 'Calculate_integrity_validation_data',
                     # 'expected_response': [0x00, 0x01] + [0x01]*32, # Byte 0: Result, Byte 1: Type, Byte 2-31: Hashvalue
-                    'expected_response': [0x00, 0x01, 0xFB, 0xA3, 0x62, 0x9A, 0xF5, 0xFC, 0xAB, 0xD5, 0x93, 0x31, 0x71, 0x49, 0x1E, 0x3D, 0x9F, 0xF2, 0x87, 0x35, 0x5B, 0x5C, 0x53, 0x89, 0x9C, 0x18, 0x79, 0xC6, 0xB1, 0xC4, 0x17, 0x33, 0x8C, 0x1B],
+                    'expected_response': [0x00, 0x01, 0xef, 0x6c, 0x44, 0x4d, 0xb3, 0xa6, 0xb5, 0x28, 0x67, 0x40, 0x26, 0xd4, 0xe5, 0xad, 0xa2, 0x01, 0x4a, 0xa3, 0x25, 0x9d, 0x53, 0x32, 0xdb, 0xa2, 0xe4, 0xfb, 0x9e, 0x73, 0xde, 0xbc, 0x40, 0x64],
                     'exp_data_length': 34,  # Bytes mit Hashwert!
        },
     'Reset_healing_inhibition': { # Routine!!!!

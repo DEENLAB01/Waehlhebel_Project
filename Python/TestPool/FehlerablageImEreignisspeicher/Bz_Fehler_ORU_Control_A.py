@@ -20,6 +20,7 @@
 # 1.3  | 29.06.2022 | Mohammed | tMSG_Botschaftszählers Aktualisiert
 # 1.4  | 28.07.2022 | Mohammed | Added TestStep 11.9 and 11.10
 # 1.5  | 15.08.2022 | Mohammed | Added Tollerenz
+# 1.6  | 02.11.2022 | Devangbhai | Added 3 cycle wait in test step 9
 
 #******************************************************************************
 
@@ -172,8 +173,8 @@ try:
     hil.ORU_Control_A_01__ORU_Control_A_01_BZ__switch.set(0)
 
     # test step 9
-    testresult.append(["[.] Warte 2500 ms (tMSG_Timeout: n/2, n=10, q=2) + 420ms (Tollerenz)", ""])
-    time.sleep(2.920)
+    testresult.append(["[.] Warte 4000 ms (tMSG_Timeout: 3+n/2, n=10, q=2) + 500ms (Tollerenz)", ""])
+    time.sleep(4 + 0.420)
 
     # test step 10
     testresult.append(["[.] Lese Fehlerspeicher (0xE0010A DTC passiv)", ""])

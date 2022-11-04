@@ -74,17 +74,18 @@ try:
     testresult.append(["[#0] Starte Testprozess: %s" % testenv.script_name.split('.py')[0], ""])
 
     # test step 1
-    testresult.append(["[.] Prüfe WH_Zustand_N_Haltephase_2 = 0", ""])
+    testresult.append(["[.] Lese signal Waehlhebel_04: WH_Zustand_N_Haltephase_2", ""])
     testresult.append(
         basic_tests.checkStatus(
             current_status=hil.Waehlhebel_04__WH_Zustand_N_Haltephase_2__value,
             nominal_status=0,
-            descr="Prüfe, dass Wert 0 (inaktiv) ist",
+            descr="Waehlhebel_04: WH_Zustand_N_Haltephase_2= 0",
         )
     )
 
     # test step 2
-    testresult.append(["[.] Prüfe dass KN_Waehlhebel_BusKnockOutTimer und  KN_Waehlhebel_BusKnockOutTimer wert sind zwichen 1 und 62 und speichere diese wert als Ausgangswert", ""])
+    testresult.append(["[.] Prüfe dass KN_Waehlhebel_ECUKnockOutTimer und  KN_Waehlhebel_BusKnockOutTimer Werte zwichen "
+                       "1 und 62 sind und speichere diese Werte als Ausgangswert", ""])
     start_value_Bus_KN_timer = hil.KN_Waehlhebel__KN_Waehlhebel_BusKnockOutTimer__value.get()
     start_value_ECU_KN_timer = hil.KN_Waehlhebel__KN_Waehlhebel_ECUKnockOutTimer__value.get()
 
@@ -92,7 +93,7 @@ try:
     testresult += [basic_tests.checkRange(start_value_Bus_KN_timer, 1, 62, descr=" 0 <  KN_Waehlhebel_BusKnockOutTimer < 63")]
 
     # test step 3
-    testresult.append(["[.] Setze SiShift_FlgStrtNeutHldPha = 1,VDSO_Vx3d = 32766 (0 km/h),SIShift_StLghtDrvPosn = 6", ""])
+    testresult.append(["[.] Setze SiShift_FlgStrtNeutHldPha = 1,VDSO_Vx3d = 32766 (0 km/h),SIShift_StLghtDrvPosn = N", ""])
     hil.SiShift_01__SIShift_FlgStrtNeutHldPha__value.set(1)
 
     descr, verdict = func_gs.setVelocity_kmph(0)
@@ -107,12 +108,12 @@ try:
     time.sleep(0.300)
 
     # test step 5
-    testresult.append(["[.] Prüfe WH_Zustand_N_Haltephase_2 = 1 ", ""])
+    testresult.append(["[.]Lese signal Waehlhebel_04: WH_Zustand_N_Haltephase_2 ", ""])
     testresult.append(
         basic_tests.checkStatus(
             current_status=hil.Waehlhebel_04__WH_Zustand_N_Haltephase_2__value,
             nominal_status=1,
-            descr="Prüfe, dass Wert 1 (aktiv_Timer_laeuft) ist",
+            descr="Waehlhebel_04: WH_Zustand_N_Haltephase_2 = 1",
         )
     )
 
@@ -121,26 +122,26 @@ try:
     time.sleep(60)
 
     # test step 7
-    testresult.append(["[.] Prüfe dass KN_Waehlhebel_BusKnockOutTimer und  KN_Waehlhebel_BusKnockOutTimer wert sind mit dem gespeicherten Ausgangswert identisch sind.", ""])
+    testresult.append(["[.] Prüfe dass KN_Waehlhebel_BusKnockOutTimer und  KN_Waehlhebel_ECUKnockOutTimer wert sind mit dem gespeicherten Ausgangswert identisch sind.", ""])
     testresult += [basic_tests.checkStatus(hil.KN_Waehlhebel__KN_Waehlhebel_ECUKnockOutTimer__value, start_value_ECU_KN_timer, descr=" Prüfe dass KN_Waehlhebel_ECUKnockOutTimer == %s" %(start_value_ECU_KN_timer))]
     testresult += [basic_tests.checkStatus(hil.KN_Waehlhebel__KN_Waehlhebel_BusKnockOutTimer__value, start_value_Bus_KN_timer, descr=" Prüfe dass KN_Waehlhebel_BusKnockOutTimer == %s" %(start_value_Bus_KN_timer))]
 
     # test step 8
-    testresult.append(["[.] Prüfe WH_Zustand_N_Haltephase_2 = 1 ", ""])
+    testresult.append(["[.] Lese Signal WH_Zustand_N_Haltephase_2 ", ""])
     testresult.append(
         basic_tests.checkStatus(
             current_status=hil.Waehlhebel_04__WH_Zustand_N_Haltephase_2__value,
             nominal_status=1,
-            descr="Prüfe, dass Wert 1 (aktiv_Timer_laeuft) ist",
+            descr="WH_Zustand_N_Haltephase_2 = 1",
         )
     )
 
     # test step 9
-    testresult.append(["[.] Warte weitere 3 min", ""])
+    testresult.append(["[.] 3 min Warten", ""])
     time.sleep(60*3)
 
     # test step 10
-    testresult.append(["[.] Prüfe dass KN_Waehlhebel_BusKnockOutTimer und  KN_Waehlhebel_BusKnockOutTimer wert sind mit dem gespeicherten Ausgangswert identisch sind.", ""])
+    testresult.append(["[.] Prüfe dass KN_Waehlhebel_BusKnockOutTimer und  KN_Waehlhebel_ECUKnockOutTimer wert sind mit dem gespeicherten Ausgangswert identisch sind.", ""])
     testresult += [
         basic_tests.checkStatus(hil.KN_Waehlhebel__KN_Waehlhebel_ECUKnockOutTimer__value, start_value_ECU_KN_timer,
                                 descr=" Prüfe dass KN_Waehlhebel_ECUKnockOutTimer == %s" % (start_value_ECU_KN_timer))]
@@ -174,7 +175,7 @@ try:
     )
 
     # test step 14
-    testresult.append(["[.] Prüfe dass KN_Waehlhebel_BusKnockOutTimer und  KN_Waehlhebel_BusKnockOutTimer wert sind mit dem gespeicherten Ausgangswert identisch sind.",""])
+    testresult.append(["[.] Prüfe dass KN_Waehlhebel_BusKnockOutTimer und  KN_Waehlhebel_ECUKnockOutTimer wert sind mit dem gespeicherten Ausgangswert identisch sind.",""])
     testresult += [
         basic_tests.checkStatus(hil.KN_Waehlhebel__KN_Waehlhebel_ECUKnockOutTimer__value, start_value_ECU_KN_timer,
                                 descr=" Prüfe dass KN_Waehlhebel_ECUKnockOutTimer == %s" % (start_value_ECU_KN_timer))]

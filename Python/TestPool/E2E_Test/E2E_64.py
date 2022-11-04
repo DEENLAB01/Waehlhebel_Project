@@ -176,7 +176,7 @@ try:
 
     # test step 2.1
     testresult.append(["[+]  warte 1500ms + 700ms+ Toleranz (Wechsel nach Initialized, Der initiale Timeout beträgt 1500ms + 700ms tDiagStart)", ""])
-    time.sleep(1.500 + 0.500+ 0.100)
+    time.sleep(1.500 + 0.700)
 
     # test step 3
     checkProgrammingPrecondition(exp_content=[0xA7])

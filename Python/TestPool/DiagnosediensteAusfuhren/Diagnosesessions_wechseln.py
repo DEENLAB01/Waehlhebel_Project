@@ -22,6 +22,7 @@
 # 1.8  | 27.01.2021 | Mohammed     | reworked test script after Adding  preconditions
 # 1.9  | 23.05.2022 | Mohammed     | Aktualisiert  Vorbedingungen
 # ******************************************************************************
+import time
 
 # Imports #####################################################################
 from _automation_wrapper_ import TestEnv
@@ -71,6 +72,7 @@ try:
     hil.ORU_Control_A_01__OnlineRemoteUpdateControlA__value.set(0)
     testresult.append(["[.] Setze ORU_Control_D_01::OnlineRemoteUpdateControlD = 0 (IDLE)", ""])
     hil.ORU_Control_D_01__OnlineRemoteUpdateControlD__value.set(0)
+    time.sleep(3)
 
     # TEST PROCESS ############################################################
     testresult.append(["[#0] Starte Testprozess: %s" % testenv.script_name.split('.py')[0], ""])

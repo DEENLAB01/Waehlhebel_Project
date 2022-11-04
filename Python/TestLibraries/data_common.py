@@ -28,7 +28,7 @@ project_name = "Waehlhebel"
 
 # DIAGNOSE ####################################################################
 # parameter which should be updated for every new software
-programming_date = [2022, 0x09, 05]  # date of last flashing [YY, MM, DD] - 0x22 0xF15B Test
+programming_date = [2022, 11, 02]  # date of last flashing [YY, MM, DD] - 0x22 0xF15B Test
 
 # sw_version will be read out from iTestStudio 
 # hw_version will be read out from iTestStudio 

@@ -16,6 +16,7 @@
 # 1.0  | 24.03.2022 | Mohammed     | initial
 # 1.1  | 28.04.2022 | Mohammed     | Reworked
 # 1.2  | 04.08.2022 | Mohammed     | Aktualisiert  Vorbedingungen
+# 1.3  | 28.10.2022 | Devangbhai   | Change the test steps in precondition
 # ******************************************************************************
 #
 # Imports #####################################################################
@@ -46,9 +47,6 @@ try:
     testresult.append(["[#0] Test Vorbedingungen", ""])
     testresult.append(["[+] ECU einschalten", ""])
     testenv.startupECU()
-    canape_diag = testenv.getCanapeDiagnostic()
-    testresult.append(["[.] Tester Present aktivieren", ""])
-    canape_diag.enableTesterPresent()
 
     testresult.append(["[.] Waehlhebelposition P aktiviert ", ""])
     descr, verdict = func_gs.changeDrivePosition('P')
@@ -67,6 +65,10 @@ try:
     hil.ORU_Control_A_01__OnlineRemoteUpdateControlA__value.set(0)
     testresult.append(["[.] Setze ORU_Control_D_01::OnlineRemoteUpdateControlD = 0 (IDLE)", ""])
     hil.ORU_Control_D_01__OnlineRemoteUpdateControlD__value.set(0)
+    time.sleep(5)
+    canape_diag = testenv.getCanapeDiagnostic()
+    testresult.append(["[.] Tester Present aktivieren", ""])
+    canape_diag.enableTesterPresent()
 
     # TEST PROCESS ############################################################
     testresult.append(["\n Starte Testprozess: {}".format(testenv.script_name.split('.py')[0]), ""])

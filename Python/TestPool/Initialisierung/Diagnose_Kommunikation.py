@@ -76,7 +76,7 @@ try:
         testresult.append(["[.] {}".format(test_data['name']), ""])
 
         if test_data['name'] == 'VW Application Software Version Number':
-            expected_data = [0x30, 0x31, 0x31, 0x31]  #
+            expected_data = [0x30, 0x31, 0x31, 0x32]  #
         else:
             expected_data = test_data['expected_response']
 

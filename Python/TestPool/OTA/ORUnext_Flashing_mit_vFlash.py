@@ -45,7 +45,7 @@ try:
     func_gs = functions_gearselection.FunctionsGearSelection(testenv, hil)
 
     # Initialize variables ####################################################
-    flash_file_path = r"C:\Users\DEENLAB01\Desktop\SW0111\OTA_Prod\Project1.vflash" # must be OTA CANID via vFlash
+    flash_file_path = r"C:\Users\DEENLAB01\Desktop\Software_version\SW0112\Vflash_Project\Production_Key\OTA\Project1.vflash" # must be OTA CANID via vFlash
     vflash_dll_path = r'C:\Program Files (x86)\Vector vFlash 7\Bin\VFlashAutomation.dll'
     activate_network = False
     flash_timeout = 2000
@@ -163,7 +163,7 @@ try:
     testresult.append(["[.] SW-Flashing starten:vFlash Software Pfade anrufen.", ""])
     try:
         vf.flash(flash_file_path, testresult, activate_network, flash_timeout)
-        testresult.append(["\x0a ORUnext Flashing: SW0111 Erfolgreich", "PASSED"])
+        testresult.append(["\x0a ORUnext Flashing: SW0112 Erfolgreich", "PASSED"])
     except vflash_api.VFlashResultError, ex:
         testresult.append(["ORUnext Flashing: SW0111 nicht Erfolgreich %s" % ex, "FAILED"])
 

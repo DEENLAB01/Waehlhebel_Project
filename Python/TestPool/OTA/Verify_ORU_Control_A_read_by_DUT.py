@@ -48,8 +48,8 @@ try:
     # Initialize variables ####################################################
     diag_ident = identifier_dict['VW Logical Software Block Version']
     exp_sw_versions = {
-        1: {'Block name': 'Bootloader', 'version': 187},
-        2: {'Block name': 'Application', 'version': 111},
+        1: {'Block name': 'Bootloader', 'version': 190},
+        2: {'Block name': 'Application', 'version': 112},
       #  3: {'Block name': 'Datensatz', 'version': None},
     }
     number_softwareblocks_n = len(exp_sw_versions)
@@ -85,8 +85,8 @@ try:
     hil.OBD_04__MM_PropulsionSystemActive__value.set(0)
     testresult.append(["[.] Setze VDSO_Vx3d auf 0 km/h", ""])
     testresult.append(func_gs.setVelocity_kmph(0))
-    testresult.append(["[.] Setze ORU_01_Status  auf RUNNING", ""])
-    hil.ORU_01__ORU_Status__value.set(4)
+    # testresult.append(["[.] Setze ORU_01_Status  auf RUNNING", ""])
+    # hil.ORU_01__ORU_Status__value.set(4)
     testresult.append(["[.] Setze ORU_CONTROL_A auf RUNNING ", ""])
     hil.ORU_Control_A_01__OnlineRemoteUpdateControlA__value.set(4)
     testresult.append(["[.] Setze ORU_CONTROL_D auf  RUNNING ", ""])

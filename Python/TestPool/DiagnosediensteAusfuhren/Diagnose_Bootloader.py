@@ -77,7 +77,7 @@ try:
     hil.ORU_Control_A_01__OnlineRemoteUpdateControlA__value.set(0)
     testresult.append(["[.] Setze ORU_Control_D_01::OnlineRemoteUpdateControlD = 0 (IDLE)", ""])
     hil.ORU_Control_D_01__OnlineRemoteUpdateControlD__value.set(0)
-    #time.sleep(2)
+    time.sleep(2)
 
     # TEST PROCESS ############################################################
     testresult.append(["[#0] Starte Testprozess: {}".format(testenv.script_name.split('.py')[0]), ""])
@@ -110,7 +110,7 @@ try:
         testresult.append(["[.] {}".format(test_data['name']), ""])
 
         if test_data['name'] == 'VW Application Software Version Number':
-            expected_data = [0x30, 0x31, 0x31, 0x31]  #
+            expected_data = [0x30, 0x31, 0x31, 0x32]  #
         else:
             expected_data = test_data['expected_response']
 

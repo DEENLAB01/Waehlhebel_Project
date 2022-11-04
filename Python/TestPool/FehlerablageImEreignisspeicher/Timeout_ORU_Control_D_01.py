@@ -19,6 +19,7 @@
 # 1.2  | 10.06.2022 | Mohammed | TestSpec Aktualisiert
 # 1.3  | 14.07.2022 | Mohammed | Added tMSG_Timeout: n-q+1, n=10, q=2
 # 1.4  | 25.07.2022 | Mohammed | Added Teststep 11.8 to 11.10
+# 1.5  | 02.11.2022 | Devangbhai | Change the wait time in test step 5, 7.4, 8, and 11.4
 #******************************************************************************
 
 from _automation_wrapper_ import TestEnv
@@ -128,8 +129,8 @@ try:
     period_var.set(0)
 
     # test step 5
-    testresult.append(["[.] Warte 2880ms (tMSG_Timeout: n-q+1, n=10, q=2) + 100ms (Tollerenz)", ""])
-    time.sleep(2.980)
+    testresult.append(["[.] Warte 2880ms (tMSG_Timeout: n-q+1, n=10, q=2) + 200ms (Tollerenz)", ""])
+    time.sleep(2.880 + 0.200)
 
     # test step 6
     testresult.append(["[.] Lese Fehlerspeicher (Timeout DTC aktiv)", ""])
@@ -143,8 +144,8 @@ try:
     hil.ORU_Control_A_01__OnlineRemoteUpdateControlA__value.set(4)
     testresult.append(["[.] Setze ORU_Control_D_01::OnlineRemoteUpdateControlD = 4 (RUNNING)", ""])
     hil.ORU_Control_D_01__OnlineRemoteUpdateControlD__value.set(4)
-    tMSG_CYCLE = 0.5  # sec
-    testresult.append(["[.] Warte tMSG_CYCLE: 500ms ", ""])
+    tMSG_CYCLE = 3  # sec
+    testresult.append(["[.] Warte tMSG_CYCLE: 3000ms ", ""])
     time.sleep(tMSG_CYCLE)
 
     testresult.append(["[.] Wechsel in Extended Session: 0x1003", ""])
@@ -171,8 +172,8 @@ try:
     period_var.set(cycle_time)
 
     # test step 9
-    testresult.append(["[.] Warte 1600 ms (tMSG_Timeout: n/2, n=10, q=2) + 100ms (Tolerenz)", ""])
-    time.sleep(1.7)
+    testresult.append(["[.] Warte 2560 ms (tMSG_Timeout: n/2, n=10, q=2) + 320ms (Tolerenz)", ""])
+    time.sleep(2.560 + 0.320)
 
     # test step 10
     testresult.append(["[.] Lese Fehlerspeicher (Timeout DTC passiv)", ""])
@@ -186,8 +187,8 @@ try:
     hil.ORU_Control_A_01__OnlineRemoteUpdateControlA__value.set(4)
     testresult.append(["[.] Setze ORU_Control_D_01::OnlineRemoteUpdateControlD = 4 (RUNNING)", ""])
     hil.ORU_Control_D_01__OnlineRemoteUpdateControlD__value.set(4)
-    tMSG_CYCLE = 0.5  # sec
-    testresult.append(["[.] Warte tMSG_CYCLE: 500ms ", ""])
+    tMSG_CYCLE = 3  # sec
+    testresult.append(["[.] Warte tMSG_CYCLE: 3000ms ", ""])
     time.sleep(tMSG_CYCLE)
 
     testresult.append(["[.] Wechsel in Extended Session: 0x1003", ""])
